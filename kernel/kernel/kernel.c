@@ -4,6 +4,6 @@
 
 // The C kernel entry point. Called after global constructors
 void kernel_main() {
-  terminal_initialize();
+  tty_initialize();
   printf("Hello, kernel world!\n");
 }

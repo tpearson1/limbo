@@ -13,8 +13,8 @@
 static int write(const char *str, size_t size) {
 #ifdef __IS_LIBK
   if (size == SIZE_UNSPECIFIED)
-    terminal_writestring(str);
-  else terminal_write(str, size);
+    tty_writestring(str);
+  else tty_write(str, size);
   return 0;
 #else
   // TODO: Implement the write system call
