@@ -46,16 +46,13 @@ _start:
   # Set up the stack
   mov $stack_top, %esp
 
+  # Call early main function before global constructors
+  call kernel_early
+
   # Call global constructors
   call _init
 
-  /*
-  We now transfer control to kernel_main. The ABI requires the stack is now very
-  16-byte aligned at the time of the call instruction (which afterwards pushes
-  the return pointer of size 4 bytes). The stack was originally 16-byte aligned
-  above and since we have not since pushed any bytes, the alignment is preserved
-  and the call is well defined.
-  */
+  # Call standard main function
   call kernel_main
 
   /*
