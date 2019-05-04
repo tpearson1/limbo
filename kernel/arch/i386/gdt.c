@@ -94,7 +94,7 @@ static void set_gdt_entry(size_t i, uint32_t base, uint32_t limit, uint8_t acces
 
 #define GDT_FLAGS (FLAGS_SIZE_32_BIT_PROTECTED | FLAGS_GRANULARITY_4_KIB)
 
-extern void gdt_install() {
+void gdt_install() {
   // Limit should be one less than the size of the gdt
   gdt_ptr.limit = sizeof(struct gdt_entry) * 5 - 1;
   gdt_ptr.base = (uint32_t)&gdt;
